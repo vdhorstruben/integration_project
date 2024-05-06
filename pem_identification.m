@@ -1,6 +1,6 @@
 clear; clc; close all;
 %% Define initial model
-params = {'Mm', 0.5; 'Mt', 0.5; 'Mcw', 0.8; 'L1', 0.33; 'L2', 0.3};
+params = {'Mm', 10; 'Mt', 10; 'Mcw', 15; 'L1', 0.33; 'L2', 0.3};
 
 sys = idgrey('modelDynamics',params,'c');
 
@@ -66,4 +66,4 @@ hold off;
 %%
 figure;
 opt = compareOptions('InitialCondition', 'zero');
-compare(data, est_sys)
+compare(data, est_sys, sys)
