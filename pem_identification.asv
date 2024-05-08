@@ -1,8 +1,10 @@
 clear; clc; close all;
 
-load simout_sine_0.5.mat
+run hwinit.m;
+
+% load simout_sine_0.5.mat
 %% Define initial model
-params = {'Mm', 10; 'Mt', 10; 'Mcw', 15; 'L1', 0.33; 'L2', 0.3, 'C_alpha': 0.1};
+params = {'Mm', 0.5; 'Mt', 0.5; 'Mcw', 0.8; 'L1', 0.33; 'L2', 0.3; 'C_alpha', 0.01};
 
 sys = idgrey('modelDynamics',params,'c');
 
@@ -16,22 +18,25 @@ Tsim = 30;
 t = [0:h:Tsim]';
 
 % Create input signal
-amplitude = 0.3;
-omega_start = 0.4;
-omega_end = 0.1;
-
-u = amplitude * sin(omega_start*t);
-
 % amplitude = 0.3;
+% omega_start = 0.4;
+% omega_end = 0.1;
+% 
+% u = amplitude * sin(omega_start*t);
+
+% amplitude = 0.25;
 % omega_start = 0.05;
 % omega_end = 0.1;
 % u = amplitude* chirp(t, omega_start, Tsim, omega_end, 'linear');
 
+u = [ones(1, 1000)*0.1, ones(1, 1000)*0.2, ones(1, 1001))*0.3];
+
 plot(t, u);
 
 %%
-% simin= [t, u];
-% sim  helicoptertemplate
+simin= [t, u];
+% simin2 = [t, zeros(size(t, 1))];
+sim  helicoptertemplate
 
 %% Gather data from output
 
