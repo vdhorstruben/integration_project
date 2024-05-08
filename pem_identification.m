@@ -1,6 +1,8 @@
 clear; clc; close all;
+
+load simout_sine_0.5.mat
 %% Define initial model
-params = {'Mm', 10; 'Mt', 10; 'Mcw', 15; 'L1', 0.33; 'L2', 0.3};
+params = {'Mm', 10; 'Mt', 10; 'Mcw', 15; 'L1', 0.33; 'L2', 0.3; 'C_alpha', 0.01};
 
 sys = idgrey('modelDynamics',params,'c');
 
@@ -28,8 +30,8 @@ u = amplitude * sin(omega_start*t);
 plot(t, u);
 
 %%
-simin= [t, u];
-sim  helicoptertemplate
+% simin= [t, u];
+% sim  helicoptertemplate
 
 %% Gather data from output
 
