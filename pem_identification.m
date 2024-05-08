@@ -29,7 +29,7 @@ t = [0:h:Tsim]';
 % omega_end = 0.1;
 % u = amplitude* chirp(t, omega_start, Tsim, omega_end, 'linear');
 
-u = [ones(1, 500)*0.1, ones(1, 500)*0.2, ones(1, 500)*0.3,ones(1, 500)*0.15, ones(1, 500)*0, ones(1, 500)*-0.1, ones(1, 500)*-0.1,ones(1, 501)*-0.05]';
+u = [ones(1, 500)*0.1, ones(1, 500)*0.2, ones(1, 500)*0.3,ones(1, 500)*0.15, ones(1, 500)*0, ones(1, 500)*-0.1, ones(1, 500)*-0.15,ones(1, 501)*-0.05]';
 
 
 amplitude = 0.2;
