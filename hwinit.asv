@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DSCS FPGA interface board: init and I/O conversions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Sensor calibration
+
+u_cal = zeros(500, 1);
+% Sampling Time
+h = 0.01;
+% Simulation duration
+Tsim = 30;
+% Time vector
+t = [0:h:Tsim]';
+
+% Prepare input data
+simin = [t, u_cal];
+sim helicoptertemplate
+
+% Gather data from output
+y_pos = simout.signals.values(:, 1);
+u_pos_measured = simout.signals.values(:,2)*(1/350);
+
+data = iddata(y_pos, u_pos, h, 'Name', 'Heli-2d');
+data.InputName = 'Percentage';
+data.InputUnit = 'P';
+data.OutputName = {'alpha'};
+data.OutputUnit = {'rad'};
+data.Tstart = 0;
+data.TimeUnit = 's';
+
+% Sensor calibration
+pitchoffs = [0];
+pitchgain = [1];
+
+adinoffs = [pitchoffs 0 0 0];    % input offset
+adingain = [pitchgain 1 1 1];    % input gain (to radians)
+
+clear u_cal h Tsim t simin simout
+
