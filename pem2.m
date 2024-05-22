@@ -25,10 +25,10 @@ t_1 = [0:h:Tsim_train-10]';
 
 u_init = -0.4*ones(1, 1000)';
 
-amplitude = 0.2;
+amplitude = 0.1;
 omega_start = 0.02;
-omega_end = 0.3;
-offset = -0.6;
+omega_end = 0.6;
+offset = -0.5;
 
 u_train = [u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
 
@@ -87,7 +87,7 @@ Tsim = Tsim_test;
 
 % Prepare input data
 simin = [t_test, u_test];
-sim helicoptertemplate_test
+sim helicoptertemplate
 
 y_test = simout.signals.values(:, 1);
 u_measured = simout.signals.values(:,2)*1/365;
@@ -112,9 +112,11 @@ sysd = c2d(sys, h);
 
 %%
 
-[Kd, S, e] = lqrd(sys.A, sys.B,[5, 0; 0, 1], 6, h);
+[Kd, S, e] = dlqr(sysd.A, sysd.B, [100, 0; 0, 1], 0.1, [0; 0]);
 
+%%
 
+[Kd_i, S_i, e_i] = lqi(sysd, [100, 0, 0; 0, 1, 0; 0, 0, 100], 0.1, [0; 0; 0]);
 
 
 
