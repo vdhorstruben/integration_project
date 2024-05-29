@@ -26,7 +26,7 @@ T_steps = Tsim / h; %amount of time steps
 
 t_ref = [0:h:Tsim]';
 %% Q and R
-Q = [100,0; 0,1;];
+Q = [10,0; 0,1;];
 R = 1;
 [P,K,L] = idare(A,B,Q,R);
 
@@ -35,7 +35,7 @@ R = 1;
 LTI.A=A;
 LTI.B=B;
 LTI.C=C;
-LTI.x0=[0 0 0]'; % to be defined
+LTI.x0=[0 0]'; % to be defined
 
 %Define the dimension of the system and horizon
 dim.N=20;
@@ -69,9 +69,9 @@ u_contraint = 1;
 
 %% MPC
 y_ref = -[0.2*ones(1,T_steps/4), 0.3*ones(1,T_steps/4), 0.1*ones(1,T_steps/4), 0.38*ones(1,(T_steps/4)+1),]';
-
+y_ref = -0.38*ones(1,T_steps+1);
 %% Prepare input data
-simin = [t_ref, y_ref];
+simin = [t_ref, y_ref'];
 
 %%
 sim helicoptertemplate_mpc_offset

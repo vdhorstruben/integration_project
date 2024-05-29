@@ -30,7 +30,7 @@ omega_start = 0.02;
 omega_end = 0.6;
 offset = -0.5;
 
-u_train = [u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
+u_train = -[u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
 
 
 Tsim_test = 60;
@@ -45,13 +45,11 @@ u_test_5 = 0.45*ones(1, 1000);
 u_test_6 = 0.6*ones(1, 1001);
 u_test = -[u_test_1, u_test_2, u_test_3, u_test_4, u_test_5, u_test_6]';
 
-figure;
-plot(t_train, u_train);
-
-
-
-figure;
-plot(t_test, u_test);
+% figure;
+% plot(t_train, u_train);
+% 
+% figure;
+% plot(t_test, u_test);
 
 %%
 Tsim = Tsim_train;
@@ -61,7 +59,11 @@ sim helicoptertemplate
 
 %%
 y = simout.signals.values(:, 1);
-u_measured = simout.signals.values(:,2)*1/365;
+u_measured = simout.signals.values(:,4)*1/365;
+
+
+figure;
+plot(t_train, y)
 
 %% Create data object for positive step input
 
@@ -81,8 +83,8 @@ figure;
 opt = compareOptions('InitialCondition', 'zero');
 compare(data_pos, est_sys_pos)
 
-pause
 %%
+pause
 Tsim = Tsim_test;
 
 % Prepare input data
