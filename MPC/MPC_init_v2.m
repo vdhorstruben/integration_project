@@ -11,13 +11,14 @@ A = sysd.A;
 B = sysd.B;
 C = sysd.C;
 
-Tsim = 16; % Simulation time
+Tsim = 60; % Simulation time
 T_steps = Tsim / h; %amount of time steps
 
 %% Q and R
-Q = [100,0;0,1];
-R = 1;
+Q = [30,0;0,1];
+R = 0.1;
 [P,K,L] = idare(A,B,Q,R);
+K_i = 5
 
 %% Construct LTI sys & dimensions
 
@@ -44,7 +45,7 @@ predmod=predmodgen(LTI,dim); %gives T and S
 
 
 %% y_ref
-y_ref = -0.1;
+y_ref = -0.2;
 
 
 % y_ref = -[0.2*ones(1,T_steps/4), 0.3*ones(1,T_steps/4), 0.1*ones(1,T_steps/4), 0.38*ones(1,T_steps/4),];

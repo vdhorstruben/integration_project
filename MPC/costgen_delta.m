@@ -6,7 +6,8 @@ function [H,h] = costgen_delta(predmod, weight, dim)
     T = predmod.T;
 
     % Create the differencing matrix for delta u
-    Delta = kron(eye(dim.N), eye(dim.nu)) - [zeros(dim.nu, dim.N * dim.nu); kron(eye(dim.N - 1), eye(dim.nu)), zeros((dim.N - 1) * dim.nu, dim.nu)];
+    Delta = kron(eye(dim.N), eye(dim.nu)) - [
+        zeros(dim.nu, dim.N * dim.nu); kron(eye(dim.N - 1), eye(dim.nu)), zeros((dim.N - 1) * dim.nu, dim.nu)];
     
     % Adjust the cost function to penalize delta u
     H = S' * Qbar * S + Delta' * Rbar * Delta;

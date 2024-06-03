@@ -23,12 +23,12 @@ t_train = [0:h:Tsim_train]';
 
 t_1 = [0:h:Tsim_train-10]';
 
-u_init = -0.4*ones(1, 1000)';
+u_init = -0.6*ones(1, 1000)';
 
 amplitude = 0.1;
 omega_start = 0.02;
 omega_end = 0.6;
-offset = -0.5;
+offset = -0.7;
 
 u_train = -[u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
 
@@ -45,11 +45,11 @@ u_test_5 = 0.45*ones(1, 1000);
 u_test_6 = 0.6*ones(1, 1001);
 u_test = -[u_test_1, u_test_2, u_test_3, u_test_4, u_test_5, u_test_6]';
 
-% figure;
-% plot(t_train, u_train);
-% 
-% figure;
-% plot(t_test, u_test);
+figure;
+plot(t_train, u_train);
+
+figure;
+plot(t_test, u_test);
 
 %%
 Tsim = Tsim_train;
@@ -76,8 +76,6 @@ data_pos.Tstart = 0;
 data_pos.TimeUnit = 's';
 
 est_sys_pos = pem(data_pos, sys);
-
-%%
 
 figure;
 opt = compareOptions('InitialCondition', 'zero');
