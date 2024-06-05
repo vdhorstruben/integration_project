@@ -19,3 +19,5 @@ Tsim = 60;
 
 %% LQI
 [Kd_i, S_i, e_i] = lqi(sysd, [50, 0, 0; 0, 1, 0; 0, 0, 30], 0.1, [0; 0; 0]);
+%%
+results = DATA.Data;

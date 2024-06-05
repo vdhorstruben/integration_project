@@ -15,10 +15,10 @@ Tsim = 60; % Simulation time
 T_steps = Tsim / h; %amount of time steps
 
 %% Q and R
-Q = [30,0;0,1];
-R = 0.1;
+Q = [100,0;0,1];
+R = 0.3;
 [P,K,L] = idare(A,B,Q,R);
-K_i = 5
+K_i = 1.5;
 
 %% Construct LTI sys & dimensions
 
@@ -47,5 +47,10 @@ predmod=predmodgen(LTI,dim); %gives T and S
 %% y_ref
 y_ref = -0.2;
 
-
 % y_ref = -[0.2*ones(1,T_steps/4), 0.3*ones(1,T_steps/4), 0.1*ones(1,T_steps/4), 0.38*ones(1,T_steps/4),];
+
+Test0 = 0.53;
+
+%%
+
+%results = DATA.Data;
