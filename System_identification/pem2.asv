@@ -30,7 +30,7 @@ omega_start = 0.02;
 omega_end = 0.6;
 offset = -0.5;
 
-u_train = -[u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
+u_train = [u_init; amplitude * chirp(t_1, omega_start, Tsim_train, omega_end, 'linear') + offset];
 
 
 Tsim_test = 60;
@@ -51,7 +51,7 @@ plot(t_train, u_train);
 figure;
 plot(t_test, u_test);
 
-%%
+%
 Tsim = Tsim_train;
 % Prepare input data
 simin = [t_train, u_train];
@@ -79,6 +79,10 @@ est_sys_pos = pem(data_pos, sys);
 figure;
 opt = compareOptions('InitialCondition', 'zero');
 compare(data_pos, est_sys_pos)
+
+
+
+
 
 %%
 pause

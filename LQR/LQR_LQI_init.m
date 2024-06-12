@@ -18,6 +18,6 @@ Tsim = 60;
 [Kd, S, e] = dlqr(sysd.A, sysd.B, [50, 0; 0, 1], 0.1, [0; 0]);
 
 %% LQI
-[Kd_i, S_i, e_i] = lqi(sysd, [50, 0, 0; 0, 1, 0; 0, 0, 30], 0.1, [0; 0; 0]);
+[Kd_i, S_i, e_i] = lqi(sysd, [50, 0, 0; 0, 1, 0; 0, 0, 20], 0.1, [0; 0; 0]);
 %%
 results = DATA.Data;
