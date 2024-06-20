@@ -47,6 +47,9 @@ u_test = -[u_test_1, u_test_2, u_test_3, u_test_4, u_test_5, u_test_6]';
 
 figure;
 plot(t_train, u_train);
+xlabel('Time (s)')
+ylabel('Input')
+title('Training Signal')
 
 figure;
 plot(t_test, u_test);
